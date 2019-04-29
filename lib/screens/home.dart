@@ -1,6 +1,9 @@
-import 'package:Wallpapers/screens/category.dart';
-import 'package:Wallpapers/screens/main_page.dart';
-import 'package:Wallpapers/utils/exapndingnav.dart';
+import 'package:wallpapers/screens/category.dart';
+import 'package:wallpapers/screens/main_page.dart';
+import 'package:wallpapers/screens/saved.dart';
+import 'package:wallpapers/screens/search_view.dart';
+import 'package:wallpapers/screens/settings.dart';
+import 'package:wallpapers/utils/exapndingnav.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,6 +14,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   var pageIndex = 0;
   PageController pageController = PageController();
+  List<String> wallpapers = ['Batman', 'Minimal', 'Apple'];
 
   @override
   void dispose() {
@@ -21,37 +25,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   centerTitle: true,
-      //   // title: Padding(
-      //   //   padding: const EdgeInsets.all(8.0),
-      //   //   child: Image.asset('assets/images/logo.png'),
-      //   // ),
-      //   title: Text(
-      //     'Wallpapers',
-      //     style: TextStyle(
-      //         color: Colors.black,
-      //         fontFamily: 'Sans',
-      //         fontWeight: FontWeight.bold,fontSize: 24),
-      //   ),
-      //   backgroundColor: Colors.white,
-      //   elevation: 0,
-      // ),
-      // body: Column(
-      //   children: <Widget>[
-      //     Expanded(
-      //       child: PageView(
-      //           controller: pageController,
-      //           onPageChanged: onPageChanged,
-      //           children: <Widget>[
-      //             MainBody(),
-      //             Category(),
-      //             Container(color: Colors.black),
-      //             Container(color: Colors.purple),
-      //           ]),
-      //     ),
-      //   ],
-      // ),
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
@@ -59,9 +32,10 @@ class _HomePageState extends State<HomePage> {
               floating: false,
               pinned: false,
               flexibleSpace: AppBar(
-                centerTitle: true,
+                elevation: 0,
+                centerTitle: false,
                 title: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.all(4.0),
@@ -77,6 +51,22 @@ class _HomePageState extends State<HomePage> {
                     )
                   ],
                 ),
+                actions: <Widget>[
+                  IconButton(
+                    icon: Icon(
+                      Icons.search,
+                      color: Colors.black,
+                    ),
+                    onPressed: () async {
+                      final String result = await showSearch(
+                          context: context,
+                          delegate: WallpaperSearch(wallpapers: wallpapers));
+                      if (result != null) {
+                        print(result);
+                      }
+                    },
+                  )
+                ],
                 backgroundColor: Colors.white,
               ),
             ),
@@ -89,8 +79,8 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               MainBody(),
               Category(),
-              Container(color: Colors.black),
-              Container(color: Colors.purple),
+              SavedPage(),
+              SettingsPage(),
             ]),
       ),
       bottomNavigationBar: ExpandingBottomBar(
@@ -107,8 +97,8 @@ class _HomePageState extends State<HomePage> {
             selectedColor: Colors.purple,
           ),
           ExpandingBottomBarItem(
-            icon: Icons.search,
-            text: "Search",
+            icon: Icons.bookmark,
+            text: "Saved",
             selectedColor: Colors.purple,
           ),
           ExpandingBottomBarItem(

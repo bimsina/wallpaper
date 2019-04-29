@@ -1,5 +1,5 @@
-import 'package:Wallpapers/screens/wallpaper.dart';
-import 'package:Wallpapers/utils/widgets.dart';
+import 'package:wallpapers/screens/wallpaper.dart';
+import 'package:wallpapers/utils/widgets.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 

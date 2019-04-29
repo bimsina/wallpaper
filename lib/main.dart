@@ -1,4 +1,4 @@
-import 'package:Wallpapers/screens/home.dart';
+import 'package:wallpapers/screens/home.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -10,7 +10,9 @@ class MyApp extends StatelessWidget {
       title: 'Wallpapers',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        brightness: Brightness.light,
+        primaryColor: Colors.blue,
+        canvasColor: Colors.transparent,
         primaryIconTheme: IconThemeData(color: Colors.black),
         textTheme: TextTheme(
           headline: TextStyle(fontFamily: 'Sans', fontWeight: FontWeight.bold),
