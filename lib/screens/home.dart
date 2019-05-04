@@ -1,6 +1,5 @@
 import 'package:wallpapers/screens/category.dart';
 import 'package:wallpapers/screens/main_page.dart';
-import 'package:wallpapers/screens/saved.dart';
 import 'package:wallpapers/screens/search_view.dart';
 import 'package:wallpapers/screens/settings.dart';
 import 'package:wallpapers/utils/exapndingnav.dart';
@@ -22,8 +21,7 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget collapsingBody() {
     return Scaffold(
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
@@ -67,24 +65,26 @@ class _HomePageState extends State<HomePage> {
                     },
                   )
                 ],
-                backgroundColor: Colors.white,
+                backgroundColor: Theme.of(context).accentColor,
               ),
             ),
           ];
         },
-        body: PageView(
-            physics: BouncingScrollPhysics(),
-            controller: pageController,
-            onPageChanged: onPageChanged,
-            children: <Widget>[
-              MainBody(),
-              Category(),
-              SavedPage(),
-              SettingsPage(),
-            ]),
+        body: Container(
+          color: Colors.white,
+          child: PageView(
+              physics: BouncingScrollPhysics(),
+              controller: pageController,
+              onPageChanged: onPageChanged,
+              children: <Widget>[
+                MainBody(),
+                Category(),
+                SettingsPage(),
+              ]),
+        ),
       ),
       bottomNavigationBar: ExpandingBottomBar(
-        navBarHeight: 65.0,
+        navBarHeight: 60.0,
         items: [
           ExpandingBottomBarItem(
             icon: Icons.home,
@@ -97,11 +97,6 @@ class _HomePageState extends State<HomePage> {
             selectedColor: Colors.purple,
           ),
           ExpandingBottomBarItem(
-            icon: Icons.bookmark,
-            text: "Saved",
-            selectedColor: Colors.purple,
-          ),
-          ExpandingBottomBarItem(
             icon: Icons.settings,
             text: "Settings",
             selectedColor: Colors.purple,
@@ -111,6 +106,88 @@ class _HomePageState extends State<HomePage> {
         onIndexChanged: navigationTapped,
       ),
     );
+  }
+
+  Widget myBody() {
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        centerTitle: false,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Image.asset('assets/images/logo.png'),
+            ),
+            Text(
+              'Wallpapers',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontFamily: 'Sans',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24),
+            )
+          ],
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.search,
+              color: Colors.black,
+            ),
+            onPressed: () async {
+              final String result = await showSearch(
+                  context: context,
+                  delegate: WallpaperSearch(wallpapers: wallpapers));
+              if (result != null) {
+                print(result);
+              }
+            },
+          )
+        ],
+        backgroundColor: Colors.white,
+      ),
+      body: Container(
+        color: Colors.white,
+        child: PageView(
+            physics: BouncingScrollPhysics(),
+            controller: pageController,
+            onPageChanged: onPageChanged,
+            children: <Widget>[
+              MainBody(),
+              Category(),
+              SettingsPage(),
+            ]),
+      ),
+      bottomNavigationBar: ExpandingBottomBar(
+        navBarHeight: 60.0,
+        items: [
+          ExpandingBottomBarItem(
+            icon: Icons.home,
+            text: "Home",
+            selectedColor: Colors.deepPurple,
+          ),
+          ExpandingBottomBarItem(
+            icon: Icons.category,
+            text: "Categories",
+            selectedColor: Colors.red,
+          ),
+          ExpandingBottomBarItem(
+            icon: Icons.settings,
+            text: "Settings",
+            selectedColor: Colors.green,
+          ),
+        ],
+        selectedIndex: pageIndex,
+        onIndexChanged: navigationTapped,
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return myBody();
   }
 
   void onPageChanged(int value) {

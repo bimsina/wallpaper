@@ -36,19 +36,34 @@ class Category extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
-                      child: Container(
-                        width: _width,
-                        height: 200,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: FadeInImage(
-                            image: NetworkImage(
-                                'https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80'),
-                            fit: BoxFit.cover,
-                            placeholder:
-                                AssetImage('assets/images/loading.gif'),
+                      child: Stack(
+                        children: <Widget>[
+                          Container(
+                            width: _width,
+                            height: 200,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: FadeInImage(
+                                image: NetworkImage(
+                                    'https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80'),
+                                fit: BoxFit.cover,
+                                placeholder:
+                                    AssetImage('assets/images/loading.gif'),
+                              ),
+                            ),
                           ),
-                        ),
+                          Positioned(
+                            bottom: 0,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                'Categories',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 18),
+                              ),
+                            ),
+                          )
+                        ],
                       ),
                     ),
                   );
