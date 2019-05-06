@@ -1,11 +1,25 @@
 import 'package:flutter/material.dart';
 
 class Category extends StatelessWidget {
+  final List<String> _category = [
+    'Minimal',
+    'Vector Art',
+    'Superhero',
+    'Earth',
+    'Ocean'
+  ];
+  final List<String> _categoryImage = [
+    'http://ilovepapers.com/wp-content/uploads/papers.co-ar13-minimal-sunset-art-illustration-dark-blue-6-wallpaper.jpg',
+    'https://image.freepik.com/free-vector/abstract-dynamic-pattern-wallpaper-vector_53876-43459.jpg',
+    'http://www.4usky.com/data/out/90/164812574-superhero-wallpapers.jpg',
+    'http://www.thelawofattraction.com/wp-content/uploads/law-of-polarity.png',
+    'https://i.pinimg.com/originals/00/aa/e7/00aae7cd6cbae92d0f5d00baab3fe289.jpg'
+  ];
   @override
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width / 2;
     return Container(
-        color: Colors.white,
+        color: Theme.of(context).primaryColor,
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Column(
@@ -15,56 +29,44 @@ class Category extends StatelessWidget {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Categories',
-                      style: TextStyle(color: Colors.black, fontSize: 24),
-                    ),
+                    child: Text('Categories',
+                        style: Theme.of(context).textTheme.body1),
                   ),
                 ],
               ),
               GridView.builder(
                 shrinkWrap: true,
                 physics: BouncingScrollPhysics(),
-                itemCount: 10,
+                itemCount: _category.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2),
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Card(
-                      elevation: 5,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: Stack(
-                        children: <Widget>[
-                          Container(
+                    child: Column(
+                      children: <Widget>[
+                        Card(
+                          elevation: 5,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: Container(
                             width: _width,
-                            height: 200,
+                            height: _width - 50,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(8.0),
                               child: FadeInImage(
-                                image: NetworkImage(
-                                    'https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80'),
+                                image: NetworkImage(_categoryImage[index]),
                                 fit: BoxFit.cover,
                                 placeholder:
                                     AssetImage('assets/images/loading.gif'),
                               ),
                             ),
                           ),
-                          Positioned(
-                            bottom: 0,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'Categories',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 18),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
+                        ),
+                        Text(_category[index],
+                            style: Theme.of(context).textTheme.body2),
+                      ],
                     ),
                   );
                 },

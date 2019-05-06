@@ -17,8 +17,9 @@ class MainBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData _themeData = Theme.of(context);
     return Container(
-      color: Colors.white,
+      color: Theme.of(context).primaryColor,
       child: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(
@@ -45,6 +46,7 @@ class MainBody extends StatelessWidget {
                                     builder: (context) => WallpaperPage(
                                           heroId: 'trending$index',
                                           imageUrl: index,
+                                          themeData: _themeData,
                                         )));
                           },
                           child: Hero(
@@ -87,6 +89,7 @@ class MainBody extends StatelessWidget {
                               builder: (context) => WallpaperPage(
                                     heroId: 'popular$index',
                                     imageUrl: _popularImages[index],
+                                    themeData: _themeData,
                                   )));
                     },
                     child: Hero(

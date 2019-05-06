@@ -94,7 +94,7 @@ class _ExpandingDisplayItemState extends State<ExpandingDisplayItem>
                       widget.title,
                       style: TextStyle(
                         color: widget.color,
-                        fontSize: (widget.height / 5) * animation.value,
+                        fontSize: (widget.height / 4) * animation.value,
                       ),
                     )
                   : Container(),

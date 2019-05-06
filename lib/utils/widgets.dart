@@ -14,7 +14,7 @@ class ShowMore extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Text(
             text,
-            style: TextStyle(color: Colors.black, fontSize: 24),
+            style: Theme.of(context).textTheme.body1,
           ),
         ),
         FlatButton(

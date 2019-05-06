@@ -5,19 +5,19 @@ class WallpaperSearch extends SearchDelegate<String> {
   List<String> filteredwallpapers = [];
   WallpaperSearch({this.wallpapers});
 
-  @override
-  ThemeData appBarTheme(BuildContext context) {
-    assert(context != null);
-    final ThemeData theme = Theme.of(context).copyWith(
-        hintColor: Colors.black,
-        primaryColor: Colors.white,
-        textTheme: TextTheme(
-          title: TextStyle(
-              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
-        ));
-    assert(theme != null);
-    return theme;
-  }
+  // @override
+  // ThemeData appBarTheme(BuildContext context) {
+  //   assert(context != null);
+  //   final ThemeData theme = Theme.of(context).copyWith(
+  //       hintColor: Theme.of(context).accentColor,
+  //       primaryColor: Theme.of(context).primaryColor,
+  //       textTheme: TextTheme(
+  //         title: TextStyle(
+  //             color: Theme.of(context).accentColor, fontWeight: FontWeight.bold, fontSize: 16),
+  //       ));
+  //   assert(theme != null);
+  //   return theme;
+  // }
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -25,7 +25,7 @@ class WallpaperSearch extends SearchDelegate<String> {
       IconButton(
         icon: Icon(
           Icons.clear,
-          color: Colors.black,
+          color: Theme.of(context).accentColor,
         ),
         onPressed: () {
           query = '';
@@ -39,7 +39,7 @@ class WallpaperSearch extends SearchDelegate<String> {
     return IconButton(
       icon: Icon(
         Icons.arrow_back,
-        color: Colors.black,
+        color: Theme.of(context).accentColor,
       ),
       onPressed: () {
         close(context, null);
@@ -51,7 +51,7 @@ class WallpaperSearch extends SearchDelegate<String> {
   Widget buildResults(BuildContext context) {
     if (query == '') {
       return Container(
-        color: Colors.white,
+        color: Theme.of(context).primaryColor,
         child: Center(
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -63,12 +63,12 @@ class WallpaperSearch extends SearchDelegate<String> {
               child: Icon(
                 Icons.search,
                 size: 50,
-                color: Colors.black,
+                color: Theme.of(context).accentColor,
               ),
             ),
             Text(
               'Enter a wallpaper to search.',
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(color: Theme.of(context).accentColor),
             )
           ],
         )),
@@ -78,7 +78,7 @@ class WallpaperSearch extends SearchDelegate<String> {
       getFilteredList(wallpapers);
       if (filteredwallpapers.length == 0) {
         return Container(
-          color: Colors.white,
+          color: Theme.of(context).primaryColor,
           child: Center(
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -90,19 +90,19 @@ class WallpaperSearch extends SearchDelegate<String> {
                 child: Icon(
                   Icons.sentiment_dissatisfied,
                   size: 50,
-                  color: Colors.black,
+                  color: Theme.of(context).accentColor,
                 ),
               ),
               Text(
                 'No results found',
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(color: Theme.of(context).accentColor),
               )
             ],
           )),
         );
       } else {
         return Container(
-          color: Colors.white,
+          color: Theme.of(context).primaryColor,
           child: ListView.builder(
             itemCount: filteredwallpapers.length == null
                 ? 0
@@ -111,14 +111,14 @@ class WallpaperSearch extends SearchDelegate<String> {
               return ListTile(
                 leading: Icon(
                   Icons.wallpaper,
-                  color: Colors.black,
+                  color: Theme.of(context).accentColor,
                 ),
                 title: Text(
                   filteredwallpapers[index],
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18.0,
-                      color: Colors.black),
+                      color: Theme.of(context).accentColor),
                 ),
                 onTap: () {
                   close(context, filteredwallpapers[index]);
@@ -144,7 +144,7 @@ class WallpaperSearch extends SearchDelegate<String> {
   Widget buildSuggestions(BuildContext context) {
     if (query == '') {
       return Container(
-        color: Colors.white,
+        color: Theme.of(context).primaryColor,
         child: Center(
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -156,12 +156,12 @@ class WallpaperSearch extends SearchDelegate<String> {
               child: Icon(
                 Icons.search,
                 size: 50,
-                color: Colors.black,
+                color: Theme.of(context).accentColor,
               ),
             ),
             Text(
               'Enter a wallpaper to search.',
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(color: Theme.of(context).accentColor),
             )
           ],
         )),
@@ -171,7 +171,7 @@ class WallpaperSearch extends SearchDelegate<String> {
       getFilteredList(wallpapers);
       if (filteredwallpapers.length == 0) {
         return Container(
-          color: Colors.white,
+          color: Theme.of(context).primaryColor,
           child: Center(
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -183,19 +183,19 @@ class WallpaperSearch extends SearchDelegate<String> {
                 child: Icon(
                   Icons.sentiment_dissatisfied,
                   size: 50,
-                  color: Colors.black,
+                  color: Theme.of(context).accentColor,
                 ),
               ),
               Text(
                 'No results found',
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(color: Theme.of(context).accentColor),
               )
             ],
           )),
         );
       } else {
         return Container(
-          color: Colors.white,
+          color: Theme.of(context).primaryColor,
           child: ListView.builder(
             itemCount: filteredwallpapers.length == null
                 ? 0
@@ -204,14 +204,14 @@ class WallpaperSearch extends SearchDelegate<String> {
               return ListTile(
                 leading: Icon(
                   Icons.wallpaper,
-                  color: Colors.black,
+                  color: Theme.of(context).accentColor,
                 ),
                 title: Text(
                   filteredwallpapers[index],
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18.0,
-                      color: Colors.black),
+                      color: Theme.of(context).accentColor),
                 ),
                 onTap: () {
                   close(context, filteredwallpapers[index]);
