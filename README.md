@@ -1,7 +1,7 @@
 # Wallpaper App made with Flutter
  This is a wallpaper app made with flutter.<br>
  
- If you want to learn how to apply an image as wallpaper, check out [reWalls](https://github.com/bimsina/reWalls)
+ This is just a UI demo. If you want to learn how to apply an image as wallpaper, check out [reWalls](https://github.com/bimsina/reWalls)
  
 ## Concepts used:
 <ul>
