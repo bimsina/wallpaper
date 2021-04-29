@@ -81,7 +81,7 @@ class _WallpaperPageState extends State<WallpaperPage> {
                                 children: <Widget>[
                                   Text(
                                     'Bibek Timsina',
-                                    style: widget.themeData.textTheme.body1,
+                                    style: widget.themeData.textTheme.bodyText2,
                                   ),
                                 ],
                               ),
@@ -110,7 +110,7 @@ class _WallpaperPageState extends State<WallpaperPage> {
                                 //   !downloading
                                 //       ? 'Not yet'
                                 //       : 'Downloading $progressString',
-                                //   style: widget.themeData.textTheme.body2,
+                                //   style: widget.themeData.textTheme.bodyText1,
                                 // )
                               ],
                             ),

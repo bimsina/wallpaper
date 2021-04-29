@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 
 class MainBody extends StatelessWidget {
   final List<String> _trendingImages = [
-    'https://images.pexels.com/photos/35857/amazing-beautiful-breathtaking-clouds.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-    'https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80',
-    'https://images.pexels.com/photos/1037992/pexels-photo-1037992.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+    'https://images.pexels.com/photos/6069699/pexels-photo-6069699.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
+    'https://images.pexels.com/photos/2981241/pexels-photo-2981241.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+        'https://images.pexels.com/photos/6310431/pexels-photo-6310431.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
   ];
   final List<String> _popularImages = [
-    'https://images.pexels.com/photos/990826/pexels-photo-990826.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-    'https://images.pexels.com/photos/1227497/pexels-photo-1227497.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-    'https://images.pexels.com/photos/1493378/pexels-photo-1493378.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+    'https://images.pexels.com/photos/132037/pexels-photo-132037.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    'https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    'https://images.pexels.com/photos/206359/pexels-photo-206359.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
   ];
 
   @override
@@ -26,8 +26,10 @@ class MainBody extends StatelessWidget {
           children: <Widget>[
             ShowMore(text: 'Trending', onTap: () {}),
             CarouselSlider(
-              autoPlay: true,
-              height: 200.0,
+              options: CarouselOptions(
+                autoPlay: true,
+                height: 200.0,
+              ),
               items: _trendingImages.map((index) {
                 return Builder(
                   builder: (BuildContext context) {

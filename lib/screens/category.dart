@@ -30,7 +30,7 @@ class Category extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text('Categories',
-                        style: Theme.of(context).textTheme.body1),
+                        style: Theme.of(context).textTheme.bodyText2),
                   ),
                 ],
               ),
@@ -65,7 +65,7 @@ class Category extends StatelessWidget {
                           ),
                         ),
                         Text(_category[index],
-                            style: Theme.of(context).textTheme.body2),
+                            style: Theme.of(context).textTheme.bodyText1),
                       ],
                     ),
                   );
